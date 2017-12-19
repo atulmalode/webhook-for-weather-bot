@@ -13,13 +13,11 @@ app = Flask(__name__)
 def webhook():
 	req = request.get_json(silent=True, force=True)
 	print(json.dumps(req, indent=4))
-
 	res = makeResponse(req)
 	res = json.dumps(res, indent=4)
 	r = make_response(res)
 	r.headers['Content-Type'] = 'application/json'
 	return r	
-
 
 def makeResponse(req):
 	result = req.get("result")
@@ -39,11 +37,9 @@ def makeResponse(req):
 		"speech": speech,
 		"displayText": speech,
 		"source": "apiai-weather-webhook"
-
+	}
+		
 if __name__ == '__main__':
 	port = int(os.getenv('PORT', 5000))
 	print("Staring app on port %d" % port)
 	app.run(debug=False, port= port, host='0.0.0.0')
-
-
-
